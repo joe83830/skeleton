@@ -1,16 +1,19 @@
 package dao;
 
 import api.ReceiptResponse;
+import generated.tables.Total;
 import generated.tables.records.ReceiptsRecord;
-import org.jooq.Configuration;
-import org.jooq.DSLContext;
+import generated.tables.records.TotalRecord;
+import org.jooq.*;
 import org.jooq.impl.DSL;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkState;
 import static generated.Tables.RECEIPTS;
+import static generated.Tables.TAGS;
 
 public class ReceiptDao {
     DSLContext dsl;
@@ -31,7 +34,21 @@ public class ReceiptDao {
         return receiptsRecord.getId();
     }
 
-    public List<ReceiptsRecord> getAllReceipts() {
-        return dsl.selectFrom(RECEIPTS).fetch();
+    public List<TotalRecord> getAllReceipts() {
+        //return dsl.selectFrom().fetch();
+        Result<Record4<String, BigDecimal, Integer, String>> a = dsl.select(TAGS.TAG, RECEIPTS.AMOUNT, RECEIPTS.ID, RECEIPTS.MERCHANT).from(RECEIPTS.leftJoin(TAGS).on(TAGS.ID.eq(RECEIPTS.ID))).fetch();
+
+        List<TotalRecord> temp = new ArrayList<TotalRecord>();
+
+        for (Record b: a) {
+            TotalRecord tmprcd = new TotalRecord();
+            tmprcd.setAmount(b.get(RECEIPTS.AMOUNT));
+            tmprcd.setId(b.get(RECEIPTS.ID));
+            tmprcd.setMerchant(b.get(RECEIPTS.MERCHANT));
+            tmprcd.setTag(b.get(TAGS.TAG));
+            temp.add(tmprcd);
+
+        }
+        return temp;
     }
 }

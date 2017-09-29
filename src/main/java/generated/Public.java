@@ -6,6 +6,7 @@ package generated;
 
 import generated.tables.Receipts;
 import generated.tables.Tags;
+import generated.tables.Total;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +32,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = 804583681;
+	private static final long serialVersionUID = 1064831088;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -54,7 +55,7 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_4183A8E3_58C5_4602_AE15_3C90C6F70FE7);
+			Sequences.SYSTEM_SEQUENCE_AB519CA5_ED3A_4738_AEFB_AD1566B410C6);
 	}
 
 	@Override
@@ -67,6 +68,7 @@ public class Public extends SchemaImpl {
 	private final List<Table<?>> getTables0() {
 		return Arrays.<Table<?>>asList(
 			Receipts.RECEIPTS,
-			Tags.TAGS);
+			Tags.TAGS,
+			Total.TOTAL);
 	}
 }

@@ -2,8 +2,12 @@ package controllers;
 
 import api.CreateReceiptRequest;
 import api.ReceiptResponse;
+import api.TotalResponse;
+import com.sun.corba.se.impl.oa.toa.TOA;
 import dao.ReceiptDao;
+import generated.tables.Total;
 import generated.tables.records.ReceiptsRecord;
+import generated.tables.records.TotalRecord;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -29,8 +33,8 @@ public class ReceiptController {
     }
 
     @GET
-    public List<ReceiptResponse> getReceipts() {
-        List<ReceiptsRecord> receiptRecords = receipts.getAllReceipts();
-        return receiptRecords.stream().map(ReceiptResponse::new).collect(toList());
+    public List<TotalResponse> getReceipts() {
+        List<TotalRecord> receiptRecords = receipts.getAllReceipts();
+        return receiptRecords.stream().map(TotalResponse::new).collect(toList());
     }
 }

@@ -43,8 +43,8 @@ public class CreateReceiptRequestTest {
         assertThat(validator.validate(receipt), hasSize(1));
     }
     @Test
-    public void testid() {
-        int id = 1;
-        assertThat(id, greaterThan(0));
-    }
+        public void testid() {
+            int id = 1;
+            assertThat(id, greaterThan(0));
+        }
 }

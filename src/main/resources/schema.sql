@@ -13,3 +13,12 @@ create table tags(
 id INT,
 tag VARCHAR(255)
 );
+
+CREATE table total (
+
+id INT,
+tag VARCHAR(255),
+merchant VARCHAR(255),
+amount DECIMAL (12, 2)
+
+);
